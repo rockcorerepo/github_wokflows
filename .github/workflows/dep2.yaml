@@ -31,6 +31,13 @@ jobs:
         run: npm ci
       - name: Test
         run: npm run test
+      - name: gather artifacts  
+        uses: actions/upload-artifact@v3 
+        with: 
+          name: dist-file 
+          path: |
+            dist
+            package.json
   deployment_job:
     needs: tests_job
     runs-on: ubuntu-latest

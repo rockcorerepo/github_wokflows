@@ -49,7 +49,7 @@ jobs:
         with: 
           name: dist-file
       - name: list files in dist folder
-        run: ls -R dist
+        run: ls 
       - name: Set up Node.js
         run: npm ci
       - name: Build

@@ -32,7 +32,7 @@ jobs:
       - name: Test
         run: npm run test
       - name: gather artifacts  
-        uses: actions/upload-artifact@v4S 
+        uses: actions/upload-artifact@v4
         with: 
           name: dist-file 
           path: |

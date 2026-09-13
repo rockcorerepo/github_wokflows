@@ -24,13 +24,18 @@ jobs:
   tests_job:
     needs: lint_job
     runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.passing_output.outputs.environment }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3 
       - name: Set up Node.js
         run: npm ci
       - name: Test
-        run: npm run test
+        run: npm run test 
+      - name: passing output  
+        id: passing_output 
+        run: echo "environment=production" >> "$GITHUB_OUTPUT"
       - name: gather artifacts  
         uses: actions/upload-artifact@v4
         with: 
@@ -54,5 +59,7 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build 
+      - name: gathering output  
+        run: echo "${{needs.tests_job.outputs.environment}}"
       - name: Deploy   
         run: echo "Deploying the application..."

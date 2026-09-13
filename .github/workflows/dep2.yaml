@@ -44,6 +44,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3 
+      - name: gather artifacts  
+        uses: actions/download-artifact@v4
+        with: 
+          name: dist-file
+      - name: list files in dist folder
+        run: ls -R dist
       - name: Set up Node.js
         run: npm ci
       - name: Build

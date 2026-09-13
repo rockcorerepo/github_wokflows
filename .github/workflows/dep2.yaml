@@ -1,0 +1,32 @@
+name: deployment_workflow
+on: [workflow_dispatch,push] 
+jobs:
+  lint_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3 
+      - name: Set up Node.js
+        run: npm ci
+      - name: lint
+        run: npm run lint
+  tests_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3 
+      - name: Set up Node.js
+        run: npm ci
+      - name: Test
+        run: npm run test
+  deployment_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3 
+      - name: Set up Node.js
+        run: npm ci
+      - name: Build
+        run: npm run build 
+      - name: Deploy   
+        run: echo "Deploying the application..."
